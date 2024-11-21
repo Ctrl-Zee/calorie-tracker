@@ -1,24 +1,17 @@
-import { useCallback, useMemo, useRef } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { useCallback, useRef, useState } from "react";
+import { Text } from "react-native";
 import BottomNavigation from "@/components/BottomNavigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import BottomSheet, {
-  BottomSheetBackdrop,
-  BottomSheetView,
-} from "@gorhom/bottom-sheet";
-import IconButton from "@/components/IconButton";
+import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import AppBottomSheet from "@/components/AppBottomSheet";
+import { ContentType } from "@/types/ContentTypes";
 
 export default function Index() {
-  const snapPoints = useMemo(() => ["66%"], []);
+  const [contentType, setContentType] = useState<ContentType | null>(null);
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const handleBottomSheetOnClose = () => {
-    bottomSheetRef.current?.close();
-  };
-
-  const handleBottomSheetOnOpen = () => {
-    console.log(bottomSheetRef.current);
+  const handleBottomSheetOnOpen = (contentType: ContentType) => {
+    setContentType(contentType);
     bottomSheetRef.current?.expand();
   };
 
@@ -37,9 +30,7 @@ export default function Index() {
     <GestureHandlerRootView className="flex flex-1 items-center justify-center">
       <Text>More to come</Text>
       <BottomNavigation onPress={handleBottomSheetOnOpen} />
-      <AppBottomSheet ref={bottomSheetRef}>
-        <Text>Awesome 🎉</Text>
-      </AppBottomSheet>
+      <AppBottomSheet ref={bottomSheetRef} contentType={contentType} />
     </GestureHandlerRootView>
   );
 }

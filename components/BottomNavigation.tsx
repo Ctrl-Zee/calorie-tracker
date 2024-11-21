@@ -1,9 +1,10 @@
 import { View } from "react-native";
 import React from "react";
 import IconButton from "./IconButton";
+import { ContentType } from "@/types/ContentTypes";
 
 type BottomNavigationProps = {
-  onPress: () => void;
+  onPress: (contentType: ContentType) => void;
 };
 
 const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
@@ -14,19 +15,19 @@ const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
           variant={"transparent"}
           icon={"bar-chart"}
           iconSize={34}
-          onPress={onPress}
+          onPress={() => onPress("history")}
         />
         <IconButton
           variant={"primary"}
           icon={"plus"}
           size={"large"}
-          onPress={onPress}
+          onPress={() => onPress("calorie")}
         />
         <IconButton
           variant={"transparent"}
           icon={"gear"}
           iconSize={34}
-          onPress={onPress}
+          onPress={() => onPress("settings")}
         />
       </View>
     </View>
