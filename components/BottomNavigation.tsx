@@ -2,27 +2,31 @@ import { View } from "react-native";
 import React from "react";
 import IconButton from "./IconButton";
 
-const BottomNavigation = () => {
+type BottomNavigationProps = {
+  onPress: () => void;
+};
+
+const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
   return (
     <View className="absolute bottom-12 w-full">
-      <View className="flex flex-1 flex-row gap-x-4 justify-center items-center">
+      <View className="flex flex-1 flex-row items-center justify-center gap-x-4">
         <IconButton
           variant={"transparent"}
           icon={"bar-chart"}
           iconSize={34}
-          onPress={() => alert("history")}
+          onPress={onPress}
         />
         <IconButton
           variant={"primary"}
           icon={"plus"}
           size={"large"}
-          onPress={() => alert("add")}
+          onPress={onPress}
         />
         <IconButton
           variant={"transparent"}
           icon={"gear"}
           iconSize={34}
-          onPress={() => alert("settings")}
+          onPress={onPress}
         />
       </View>
     </View>
