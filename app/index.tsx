@@ -1,10 +1,11 @@
-import { useCallback, useRef, useState } from "react";
-import { Text } from "react-native";
+import { useRef, useState } from "react";
+import { StyleSheet } from "react-native";
 import BottomNavigation from "@/components/BottomNavigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
+import BottomSheet from "@gorhom/bottom-sheet";
 import AppBottomSheet from "@/components/AppBottomSheet";
 import { ContentType } from "@/types/ContentTypes";
+import DailyCalories from "@/components/DailyCalories";
 
 export default function Index() {
   const [contentType, setContentType] = useState<ContentType | null>(null);
@@ -15,22 +16,19 @@ export default function Index() {
     bottomSheetRef.current?.expand();
   };
 
-  const renderBackdrop = useCallback(
-    (props: any) => (
-      <BottomSheetBackdrop
-        appearsOnIndex={0}
-        disappearsOnIndex={-1}
-        {...props}
-      />
-    ),
-    [],
-  );
-
   return (
-    <GestureHandlerRootView className="flex flex-1 items-center justify-center">
-      <Text>More to come</Text>
+    <GestureHandlerRootView style={styles.container}>
+      <DailyCalories />
       <BottomNavigation onPress={handleBottomSheetOnOpen} />
       <AppBottomSheet ref={bottomSheetRef} contentType={contentType} />
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

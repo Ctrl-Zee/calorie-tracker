@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
 import IconButton from "./IconButton";
 import { ContentType } from "@/types/ContentTypes";
@@ -9,7 +9,7 @@ type BottomNavigationProps = {
 
 const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
   return (
-    <View className="absolute bottom-12 w-full">
+    <View style={styles.container}>
       <View className="flex flex-1 flex-row items-center justify-center gap-x-4">
         <IconButton
           variant={"transparent"}
@@ -33,5 +33,13 @@ const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    position: "absolute",
+    bottom: 48,
+    width: "100%",
+  },
+});
 
 export default BottomNavigation;

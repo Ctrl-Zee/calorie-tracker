@@ -2,13 +2,12 @@ import React, { forwardRef, useCallback } from "react";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView,
-  useBottomSheet,
 } from "@gorhom/bottom-sheet";
-import IconButton from "./IconButton";
 import { ContentType } from "@/types/ContentTypes";
 import HistoryScreen from "@/screens/HistoryScreen";
-import CalorieScreen from "@/screens/CalorieScreen";
+import CalorieEntryScreen from "@/screens/CalorieEntryScreen";
 import SettingsScreen from "@/screens/SettingsScreen";
+import { Keyboard, StyleSheet } from "react-native";
 
 type AppBottomSheetProps = {
   contentType: ContentType | null;
@@ -16,20 +15,8 @@ type AppBottomSheetProps = {
 
 const ContentComponents: Record<ContentType, JSX.Element> = {
   history: <HistoryScreen />,
-  calorie: <CalorieScreen />,
+  calorie: <CalorieEntryScreen />,
   settings: <SettingsScreen />,
-};
-
-const CloseButton = () => {
-  const { close } = useBottomSheet();
-  return (
-    <IconButton
-      variant={"transparent"}
-      icon={"close"}
-      iconSize={34}
-      onPress={() => close()}
-    />
-  );
 };
 
 const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
@@ -41,6 +28,9 @@ const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
     const renderBackdrop = useCallback(
       (props: any) => (
         <BottomSheetBackdrop
+          onPress={() => {
+            Keyboard.dismiss();
+          }}
           appearsOnIndex={0}
           disappearsOnIndex={-1}
           {...props}
@@ -56,15 +46,20 @@ const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
         index={-1}
         backdropComponent={renderBackdrop}
       >
-        <BottomSheetView className="flex flex-row justify-end">
-          <CloseButton />
-        </BottomSheetView>
-        <BottomSheetView className="flex flex-1 items-center justify-center">
+        <BottomSheetView style={styles.container}>
           {ContentComponent}
         </BottomSheetView>
       </BottomSheet>
     );
   },
 );
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default AppBottomSheet;
