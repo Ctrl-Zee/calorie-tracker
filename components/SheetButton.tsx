@@ -1,11 +1,11 @@
 import { Keyboard } from "react-native";
 import React from "react";
 import { useBottomSheet } from "@gorhom/bottom-sheet";
-import IconButton from "./IconButton";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { IconButton } from "react-native-paper";
 
 type SheetButtonProps = {
-  icon: keyof typeof FontAwesome.glyphMap;
+  icon: keyof typeof MaterialCommunityIcons.glyphMap;
   onPress?: () => void;
 };
 
@@ -18,14 +18,7 @@ const SheetButton = ({ icon, onPress }: SheetButtonProps) => {
     close();
   };
 
-  return (
-    <IconButton
-      variant={"transparent"}
-      icon={icon}
-      iconSize={34}
-      onPress={handleClose}
-    />
-  );
+  return <IconButton icon={icon} size={34} onPress={handleClose} />;
 };
 
 export default SheetButton;

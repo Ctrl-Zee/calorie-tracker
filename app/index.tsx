@@ -6,7 +6,6 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import AppBottomSheet from "@/components/AppBottomSheet";
 import { ContentType } from "@/types/ContentTypes";
 import DailyCalories from "@/components/DailyCalories";
-import { Button } from "react-native-paper";
 
 export default function Index() {
   const [contentType, setContentType] = useState<ContentType | null>(null);
@@ -19,13 +18,6 @@ export default function Index() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => console.log("Pressed")}
-      >
-        Press me
-      </Button>
       <DailyCalories />
       <BottomNavigation onPress={handleBottomSheetOnOpen} />
       <AppBottomSheet ref={bottomSheetRef} contentType={contentType} />

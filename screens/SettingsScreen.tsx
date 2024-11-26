@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
 import React from "react";
-import IconButton from "@/components/IconButton";
+import { View } from "react-native";
 import { useClearAll } from "@/hooks/useClearAll";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryKeys } from "@/keys/QueryKeys";
+import { IconButton } from "react-native-paper";
 
 const SettingsScreen = () => {
   const { mutate: clearEntries } = useClearAll();
@@ -18,7 +18,7 @@ const SettingsScreen = () => {
 
   return (
     <View className="flex flex-1 items-center justify-center">
-      <IconButton icon="trash-o" onPress={handleClear} />
+      <IconButton icon="trash-can" mode={"contained"} onPress={handleClear} />
     </View>
   );
 };

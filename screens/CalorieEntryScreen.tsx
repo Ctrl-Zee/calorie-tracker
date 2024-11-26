@@ -1,11 +1,11 @@
 import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import AppTextInput from "@/components/AppTextInput";
-import SheetButton from "@/components/SheetButton";
 import { useAddEntry } from "@/hooks/useAddEntry";
 import { CalorieEntry } from "@/types/CalorieEntry";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryKeys } from "@/keys/QueryKeys";
+import SheetButton from "@/components/SheetButton";
+import { TextInput } from "react-native-paper";
 
 const CalorieEntryScreen = () => {
   const [calories, setCalories] = useState<string>("");
@@ -17,7 +17,7 @@ const CalorieEntryScreen = () => {
       calories: parseInt(calories),
       date: new Date(),
       entryType: "manual",
-      id: Math.random().toString(),
+      id: Math.random().toString(), //TODO reaplace with guid
     } as CalorieEntry;
 
     addCalories(entry, {
@@ -37,14 +37,16 @@ const CalorieEntryScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <SheetButton icon={"close"} onPress={resetInput} />
-        <SheetButton icon={"check-circle-o"} onPress={handleSave} />
+        <SheetButton icon="close" onPress={resetInput} />
+        <SheetButton icon={"check"} onPress={handleSave} />
       </View>
       <View style={styles.inputContainer}>
-        <AppTextInput
+        <TextInput
+          value={calories}
+          onChangeText={setCalories}
+          keyboardType="numeric"
           autoFocus={true}
-          number={calories}
-          onChangeNumber={setCalories}
+          placeholder="0"
         />
       </View>
     </View>
