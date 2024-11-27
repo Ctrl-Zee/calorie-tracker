@@ -22,6 +22,12 @@ const DailyCalories = () => {
 
   return (
     <View style={styles.container}>
+      {/* DEBUG */}
+      {/* {entries?.map((entry) => (
+        <Text key={entry.id}>
+          {entry.date.toString()}: {entry.calories}
+        </Text>
+      ))} */}
       <Text
         style={[
           styles.calories,
