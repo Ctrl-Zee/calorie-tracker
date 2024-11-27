@@ -25,7 +25,7 @@ const DailyCalories = () => {
       <Text
         style={[
           styles.calories,
-          { color: totalCalories > DAILY_GOAL ? "red" : "green" },
+          { color: totalCalories > DAILY_GOAL ? "#FF3B3B" : "#4CAF50" },
         ]}
       >
         {totalCalories}
@@ -36,7 +36,8 @@ const DailyCalories = () => {
             styles.barFill,
             {
               width: `${percentageFilled}%`,
-              backgroundColor: totalCalories > DAILY_GOAL ? "red" : "green",
+              backgroundColor:
+                totalCalories > DAILY_GOAL ? "#FF3B3B" : "#4CAF50",
             },
           ]}
         />
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
   barContainer: {
     width: "100%",
     height: 20,
-    backgroundColor: "black",
+    backgroundColor: "#cbd5e1",
     borderRadius: 10,
     overflow: "hidden",
   },
