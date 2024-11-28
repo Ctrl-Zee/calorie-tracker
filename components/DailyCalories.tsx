@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import { isToday } from "date-fns";
 import { View, Text, StyleSheet } from "react-native";
 import { useGetEntries } from "@/hooks/useGetEntries";
-import { useTheme } from "react-native-paper";
 
 const DailyCalories = () => {
   const { data: entries } = useGetEntries();

@@ -1,14 +1,19 @@
 import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { useAddEntry } from "@/hooks/useAddEntry";
-import { CalorieEntry } from "@/types/CalorieEntry";
+import { CalorieEntry, MealType } from "@/types/CalorieEntry";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryKeys } from "@/keys/QueryKeys";
 import SheetButton from "@/components/SheetButton";
 import { TextInput } from "react-native-paper";
+import MealTypeOptions from "@/components/MealTypeOptions";
+import { v4 as uuidv4 } from "uuid";
 
 const CalorieEntryScreen = () => {
   const [calories, setCalories] = useState<string>("");
+  const [selectedMealType, setSelectedMealType] = useState<MealType | null>(
+    null,
+  );
   const { mutate: addCalories } = useAddEntry();
   const queryClient = useQueryClient();
 
@@ -17,8 +22,13 @@ const CalorieEntryScreen = () => {
       calories: parseInt(calories),
       date: new Date(),
       entryType: "manual",
-      id: Math.random().toString(), //TODO reaplace with guid
+      mealType: selectedMealType ?? "other",
+      id: uuidv4(),
     } as CalorieEntry;
+
+    if (!entry.calories || entry.calories <= 0 || !selectedMealType) {
+      return;
+    }
 
     addCalories(entry, {
       onSettled: () => {
@@ -39,6 +49,12 @@ const CalorieEntryScreen = () => {
       <View style={styles.header}>
         <SheetButton icon="close" onPress={resetInput} />
         <SheetButton icon={"check"} onPress={handleSave} />
+      </View>
+      <View style={styles.mealTypeContainer}>
+        <MealTypeOptions
+          selectedMealType={selectedMealType}
+          setSelectedMealType={setSelectedMealType}
+        />
       </View>
       <View style={styles.inputContainer}>
         <TextInput
@@ -65,6 +81,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     height: 50,
+    marginBottom: 20,
+  },
+  mealTypeContainer: {
+    width: "100%",
     marginBottom: 20,
   },
   inputContainer: {

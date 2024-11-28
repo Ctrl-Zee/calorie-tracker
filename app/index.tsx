@@ -18,6 +18,7 @@ export default function Index() {
 
   return (
     <GestureHandlerRootView style={styles.container}>
+      {/* <ReanimatedSandbox /> */}
       <DailyCalories />
       <BottomNavigation onPress={handleBottomSheetOnOpen} />
       <AppBottomSheet ref={bottomSheetRef} contentType={contentType} />
