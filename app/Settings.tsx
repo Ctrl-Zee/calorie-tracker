@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { EntryKeys } from "@/keys/QueryKeys";
 import { IconButton } from "react-native-paper";
 
-const SettingsScreen = () => {
+const Settings = () => {
   const { mutate: clearEntries } = useClearAll();
   const queryClient = useQueryClient();
 
@@ -23,4 +23,4 @@ const SettingsScreen = () => {
   );
 };
 
-export default SettingsScreen;
+export default Settings;

@@ -1,29 +1,17 @@
-import React, { forwardRef, useCallback } from "react";
+import { forwardRef, useCallback, useState } from "react";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import { ContentType } from "@/types/ContentTypes";
-import HistoryScreen from "@/screens/HistoryScreen";
-import CalorieEntryScreen from "@/screens/CalorieEntryScreen";
-import SettingsScreen from "@/screens/SettingsScreen";
+import CalorieLogger from "@/components/CalorieLogger";
 import { Keyboard, StyleSheet } from "react-native";
+import { getMealByTime } from "@/utils/MealByTime";
 
-type AppBottomSheetProps = {
-  contentType: ContentType | null;
-};
-
-const ContentComponents: Record<ContentType, JSX.Element> = {
-  history: <HistoryScreen />,
-  calorie: <CalorieEntryScreen />,
-  settings: <SettingsScreen />,
-};
+type AppBottomSheetProps = {};
 
 const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
-  ({ contentType }, ref) => {
-    const ContentComponent = contentType
-      ? ContentComponents[contentType]
-      : null;
+  ({}, ref) => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const renderBackdrop = useCallback(
       (props: any) => (
@@ -31,7 +19,6 @@ const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
           onPress={() => {
             Keyboard.dismiss();
           }}
-          appearsOnIndex={0}
           disappearsOnIndex={-1}
           {...props}
         />
@@ -47,7 +34,7 @@ const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
         backdropComponent={renderBackdrop}
       >
         <BottomSheetView style={styles.container}>
-          {ContentComponent}
+          <CalorieLogger isOpen />
         </BottomSheetView>
       </BottomSheet>
     );

@@ -7,12 +7,17 @@ import { EntryKeys } from "@/keys/QueryKeys";
 import SheetButton from "@/components/SheetButton";
 import { TextInput } from "react-native-paper";
 import MealTypeOptions from "@/components/MealTypeOptions";
+import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
+import { getMealByTime } from "@/utils/MealByTime";
+type CalorieLoggerProps = {
+  isOpen: boolean;
+};
 
-const CalorieEntryScreen = () => {
+const CalorieLogger = ({ isOpen }: CalorieLoggerProps) => {
   const [calories, setCalories] = useState<string>("");
   const [selectedMealType, setSelectedMealType] = useState<MealType | null>(
-    null,
+    getMealByTime(), // TODO: set the meal type when the bottom sheet is opened.
   );
   const { mutate: addCalories } = useAddEntry();
   const queryClient = useQueryClient();
@@ -61,7 +66,7 @@ const CalorieEntryScreen = () => {
           value={calories}
           onChangeText={setCalories}
           keyboardType="numeric"
-          autoFocus={true}
+          autoFocus={false}
           placeholder="0"
         />
       </View>
@@ -92,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalorieEntryScreen;
+export default CalorieLogger;

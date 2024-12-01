@@ -1,21 +1,22 @@
 import { View, StyleSheet } from "react-native";
 import React from "react";
-import { ContentType } from "@/types/ContentTypes";
 import { IconButton, useTheme } from "react-native-paper";
+import { useNavigation } from "expo-router";
 
 type BottomNavigationProps = {
-  onPress: (contentType: ContentType) => void;
+  onPress: () => void;
 };
 
 const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
   const theme = useTheme();
+  const navigation = useNavigation<any>();
   return (
     <View style={styles.container}>
       <View className="flex flex-1 flex-row items-center justify-center gap-x-4">
         <IconButton
           icon="chart-bar"
           size={34}
-          onPress={() => onPress("history")}
+          onPress={() => navigation.navigate("History")}
         />
         <IconButton
           icon="plus"
@@ -23,9 +24,13 @@ const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
           mode={"contained-tonal"}
           iconColor={theme.colors.onPrimary}
           containerColor={theme.colors.primary}
-          onPress={() => onPress("calorie")}
+          onPress={() => onPress()}
         />
-        <IconButton icon="cog" size={34} onPress={() => onPress("settings")} />
+        <IconButton
+          icon="cog"
+          size={34}
+          onPress={() => navigation.navigate("Settings")}
+        />
       </View>
     </View>
   );

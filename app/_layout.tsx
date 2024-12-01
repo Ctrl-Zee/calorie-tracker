@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MD3DarkTheme, MD3LightTheme, PaperProvider } from "react-native-paper";
 import { theme } from "../lib/react-native-paper/theme";
 import { useColorScheme } from "react-native";
+import History from "@/app/History";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -17,7 +18,10 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={paperTheme}>
-        <Stack screenOptions={{ headerShown: false }} />
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="History" />
+        </Stack>
       </PaperProvider>
     </QueryClientProvider>
   );

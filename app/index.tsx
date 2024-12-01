@@ -8,20 +8,17 @@ import { ContentType } from "@/types/ContentTypes";
 import DailyCalories from "@/components/DailyCalories";
 
 export default function Index() {
-  const [contentType, setContentType] = useState<ContentType | null>(null);
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const handleBottomSheetOnOpen = (contentType: ContentType) => {
-    setContentType(contentType);
-    bottomSheetRef.current?.expand();
+  const handleBottomSheetOnOpen = () => {
+    bottomSheetRef.current?.snapToIndex(1);
   };
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      {/* <ReanimatedSandbox /> */}
       <DailyCalories />
       <BottomNavigation onPress={handleBottomSheetOnOpen} />
-      <AppBottomSheet ref={bottomSheetRef} contentType={contentType} />
+      <AppBottomSheet ref={bottomSheetRef} />
     </GestureHandlerRootView>
   );
 }
