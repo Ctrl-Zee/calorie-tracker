@@ -1,5 +1,4 @@
 import { Keyboard } from "react-native";
-import React from "react";
 import { useBottomSheet } from "@gorhom/bottom-sheet";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { IconButton } from "react-native-paper";

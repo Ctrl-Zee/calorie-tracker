@@ -6,12 +6,13 @@ import BottomSheet, {
 import CalorieLogger from "@/components/CalorieLogger";
 import { Keyboard, StyleSheet } from "react-native";
 import { getMealByTime } from "@/utils/MealByTime";
+import { useTheme } from "react-native-paper";
 
 type AppBottomSheetProps = {};
 
 const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
   ({}, ref) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const theme = useTheme();
 
     const renderBackdrop = useCallback(
       (props: any) => (
@@ -32,9 +33,16 @@ const AppBottomSheet = forwardRef<BottomSheet, AppBottomSheetProps>(
         snapPoints={["66%"]}
         index={-1}
         backdropComponent={renderBackdrop}
+        handleStyle={{ backgroundColor: theme.colors.surface }}
+        handleIndicatorStyle={{ backgroundColor: theme.colors.onSurface }}
       >
-        <BottomSheetView style={styles.container}>
-          <CalorieLogger isOpen />
+        <BottomSheetView
+          style={[
+            styles.container,
+            { backgroundColor: theme.colors.background },
+          ]}
+        >
+          <CalorieLogger />
         </BottomSheetView>
       </BottomSheet>
     );

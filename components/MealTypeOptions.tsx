@@ -1,6 +1,6 @@
 import { MealType } from "@/types/CalorieEntry";
-import { useState } from "react";
-import { View, StyleSheet, Text, Pressable } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
+import { Text } from "react-native-paper";
 import { useTheme } from "react-native-paper";
 
 const buttonOption: MealType[] = [
@@ -43,7 +43,9 @@ const MealTypeOptions = ({
           ]}
           onPress={() => handleOnPress(button)}
         >
-          <Text style={styles.buttonText}>{button}</Text>
+          <Text variant="bodyMedium" style={styles.buttonText}>
+            {button}
+          </Text>
         </Pressable>
       ))}
     </View>

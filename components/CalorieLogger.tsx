@@ -10,11 +10,11 @@ import MealTypeOptions from "@/components/MealTypeOptions";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { getMealByTime } from "@/utils/MealByTime";
-type CalorieLoggerProps = {
-  isOpen: boolean;
-};
 
-const CalorieLogger = ({ isOpen }: CalorieLoggerProps) => {
+/**
+ * Handles the input for the calorie logger.
+ */
+const CalorieLogger = () => {
   const [calories, setCalories] = useState<string>("");
   const [selectedMealType, setSelectedMealType] = useState<MealType | null>(
     getMealByTime(), // TODO: set the meal type when the bottom sheet is opened.

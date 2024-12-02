@@ -1,11 +1,14 @@
 import React, { useMemo } from "react";
 import { isToday } from "date-fns";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { Text } from "react-native-paper";
 import { useGetEntries } from "@/hooks/useGetEntries";
 import { DAILY_GOAL } from "@/types/Constants";
+import { useTheme } from "react-native-paper";
 
 const DailyCalories = () => {
   const { data: entries } = useGetEntries();
+  const theme = useTheme();
 
   const totalCalories = useMemo(() => {
     return (
@@ -21,16 +24,16 @@ const DailyCalories = () => {
 
   return (
     <View style={styles.container}>
-      {/* DEBUG */}
-      {/* {entries?.map((entry) => (
-        <Text key={entry.id}>
-          {entry.date.toString()}: {entry.calories}
-        </Text>
-      ))} */}
       <Text
+        variant="displayLarge"
         style={[
           styles.calories,
-          { color: totalCalories > DAILY_GOAL ? "#FF3B3B" : "#4CAF50" },
+          {
+            color:
+              totalCalories > DAILY_GOAL
+                ? theme.colors.error
+                : theme.colors.inversePrimary,
+          },
         ]}
       >
         {totalCalories}
@@ -42,14 +45,18 @@ const DailyCalories = () => {
             {
               width: `${percentageFilled}%`,
               backgroundColor:
-                totalCalories > DAILY_GOAL ? "#FF3B3B" : "#4CAF50",
+                totalCalories > DAILY_GOAL
+                  ? theme.colors.error
+                  : theme.colors.inversePrimary,
             },
           ]}
         />
       </View>
       <View style={styles.goalContainer}>
-        <Text style={styles.goalText}>{totalPercentage} %</Text>
-        <Text style={styles.goalText}>
+        <Text variant="displaySmall" style={styles.goalText}>
+          {totalPercentage} %
+        </Text>
+        <Text variant="displaySmall" style={styles.goalText}>
           {remainder > 0
             ? `Remaining: ${remainder}`
             : `Over: ${Math.abs(remainder)}`}
@@ -68,9 +75,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   calories: {
-    fontSize: 68,
-    fontWeight: "bold",
     marginBottom: 30,
+    fontWeight: "bold",
   },
   barContainer: {
     width: "100%",
@@ -91,7 +97,7 @@ const styles = StyleSheet.create({
   goalText: {
     marginTop: 5,
     textAlign: "center",
-    fontSize: 30,
+    // fontSize: 30,
   },
 });
 
