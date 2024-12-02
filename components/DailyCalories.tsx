@@ -2,10 +2,10 @@ import React, { useMemo } from "react";
 import { isToday } from "date-fns";
 import { View, Text, StyleSheet } from "react-native";
 import { useGetEntries } from "@/hooks/useGetEntries";
+import { DAILY_GOAL } from "@/types/Constants";
 
 const DailyCalories = () => {
   const { data: entries } = useGetEntries();
-  const DAILY_GOAL = 1850; // TODO: Get this from user settings
 
   const totalCalories = useMemo(() => {
     return (
