@@ -18,8 +18,12 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <PaperProvider theme={paperTheme}>
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="index"
+            options={{ headerShown: false, title: "Home" }}
+          />
           <Stack.Screen name="History" />
+          <Stack.Screen name="Settings" />
         </Stack>
       </PaperProvider>
     </QueryClientProvider>
