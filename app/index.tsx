@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { AppState, StyleSheet } from "react-native";
-import BottomNavigation from "@/features/home/BottomNavigation";
+import BottomNavigation from "@/features/home/components/BottomNavigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet from "@gorhom/bottom-sheet";
 import AppBottomSheet from "@/components/AppBottomSheet";
@@ -39,7 +39,7 @@ export default function Index() {
   }, []);
 
   return (
-    <Screen>
+    <Screen style={{ padding: 0 }}>
       <GestureHandlerRootView style={styles.container}>
         <DailyCalories />
         <BottomNavigation onPress={handleBottomSheetOnOpen} />
@@ -54,5 +54,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    padding: 24, // need padding here so the bottom sheet doesn't have the screen padding applied
   },
 });

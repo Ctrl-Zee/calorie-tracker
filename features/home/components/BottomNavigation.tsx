@@ -12,23 +12,21 @@ const BottomNavigation = ({ onPress }: BottomNavigationProps) => {
   const navigation = useNavigation<any>();
   return (
     <View style={styles.container}>
-      <View className="flex flex-1 flex-row items-center justify-center gap-x-4">
-        <Link href={"/History"}>
-          <IconButton icon="chart-bar" size={34} />
-        </Link>
+      <Link href={"/History"}>
+        <IconButton icon="chart-bar" size={34} />
+      </Link>
 
-        <IconButton
-          icon="plus"
-          size={44}
-          mode={"contained-tonal"}
-          iconColor={theme.colors.onPrimary}
-          containerColor={theme.colors.primary}
-          onPress={() => onPress()}
-        />
-        <Link href={"/settings"}>
-          <IconButton icon="cog" size={34} />
-        </Link>
-      </View>
+      <IconButton
+        icon="plus"
+        size={44}
+        mode={"contained-tonal"}
+        iconColor={theme.colors.onPrimary}
+        containerColor={theme.colors.primary}
+        onPress={() => onPress()}
+      />
+      <Link href={"/settings"}>
+        <IconButton icon="cog" size={34} />
+      </Link>
     </View>
   );
 };
@@ -38,6 +36,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 48,
     width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 16,
   },
 });
 
