@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { AppState, StyleSheet } from "react-native";
-import BottomNavigation from "@/components/BottomNavigation";
+import BottomNavigation from "@/features/home/BottomNavigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BottomSheet from "@gorhom/bottom-sheet";
 import AppBottomSheet from "@/components/AppBottomSheet";
-import DailyCalories from "@/components/DailyCalories";
+import DailyCalories from "@/features/home/components/DailyCalories";
 import { useTheme } from "react-native-paper";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryKeys, SettingsKeys } from "@/keys/QueryKeys";

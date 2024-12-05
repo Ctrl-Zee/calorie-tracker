@@ -1,8 +1,8 @@
 import { View, StyleSheet, ScrollView } from "react-native";
 import { useGetHistoryByDate } from "@/hooks/useGetHistoryByDate";
-import HistoryMealEntries from "@/components/HistoryMealEntries";
-import HistoryTotal from "@/components/HistoryTotal";
-import HistoryDatePicker from "@/components/HistoryDatePicker";
+import HistoryMealEntries from "@/features/history/components/HistoryMealEntries";
+import HistoryTotal from "@/features/history/components/HistoryTotal";
+import HistoryDatePicker from "@/features/history/components/HistoryDatePicker";
 import { useState } from "react";
 import { useTheme } from "react-native-paper";
 import Screen from "@/components/Screen";

@@ -3,7 +3,7 @@ import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetView,
 } from "@gorhom/bottom-sheet";
-import CalorieLogger from "@/components/CalorieLogger";
+import CalorieLogger from "@/features/home/components/CalorieLogger";
 import { Keyboard, StyleSheet } from "react-native";
 import { getMealByTime } from "@/utils/MealByTime";
 import { useTheme } from "react-native-paper";

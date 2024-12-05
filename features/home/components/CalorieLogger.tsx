@@ -6,7 +6,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { EntryKeys } from "@/keys/QueryKeys";
 import SheetButton from "@/components/SheetButton";
 import { TextInput, Text, useTheme } from "react-native-paper";
-import MealTypeOptions from "@/components/MealTypeOptions";
+import MealTypeOptions from "@/features/home/components/MealTypeOptions";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { getMealByTime } from "@/utils/MealByTime";
