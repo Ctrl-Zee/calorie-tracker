@@ -3,7 +3,7 @@ import { useGetEntries } from "./useGetEntries";
 import { isSameDay } from "date-fns";
 import { MealType } from "@/types/CalorieEntry";
 import { HistoryItem, HistorySummary } from "@/types/HistorySummary";
-import { DAILY_GOAL } from "@/types/Constants";
+import { DEFAULT_DAILY_GOAL } from "@/types/Constants";
 
 export const useGetHistoryByDate = (date: Date) => {
   const { data: entries } = useGetEntries();
@@ -40,7 +40,7 @@ export const useGetHistoryByDate = (date: Date) => {
     return {
       date,
       totalCalories,
-      dailyPercentage: Math.round((totalCalories / DAILY_GOAL) * 100),
+      dailyPercentage: Math.round((totalCalories / DEFAULT_DAILY_GOAL) * 100),
       items,
     } as HistorySummary;
   }, [filteredEntries]);

@@ -3,7 +3,7 @@ import { isToday } from "date-fns";
 import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 import { useGetEntries } from "@/hooks/useGetEntries";
-import { DAILY_GOAL } from "@/types/Constants";
+import { DEFAULT_DAILY_GOAL } from "@/types/Constants";
 import { useTheme } from "react-native-paper";
 
 const DailyCalories = () => {
@@ -18,9 +18,14 @@ const DailyCalories = () => {
     );
   }, [entries]);
 
-  const percentageFilled = Math.min((totalCalories / DAILY_GOAL) * 100, 100);
-  const totalPercentage = Math.round((totalCalories / DAILY_GOAL) * 100);
-  const remainder = DAILY_GOAL - totalCalories;
+  const percentageFilled = Math.min(
+    (totalCalories / DEFAULT_DAILY_GOAL) * 100,
+    100,
+  );
+  const totalPercentage = Math.round(
+    (totalCalories / DEFAULT_DAILY_GOAL) * 100,
+  );
+  const remainder = DEFAULT_DAILY_GOAL - totalCalories;
 
   return (
     <View style={styles.container}>
@@ -30,7 +35,7 @@ const DailyCalories = () => {
           styles.calories,
           {
             color:
-              totalCalories > DAILY_GOAL
+              totalCalories > DEFAULT_DAILY_GOAL
                 ? theme.colors.error
                 : theme.colors.inversePrimary,
           },
@@ -45,7 +50,7 @@ const DailyCalories = () => {
             {
               width: `${percentageFilled}%`,
               backgroundColor:
-                totalCalories > DAILY_GOAL
+                totalCalories > DEFAULT_DAILY_GOAL
                   ? theme.colors.error
                   : theme.colors.inversePrimary,
             },
@@ -72,7 +77,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
   },
   calories: {
     marginBottom: 30,

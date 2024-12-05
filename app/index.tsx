@@ -7,7 +7,8 @@ import AppBottomSheet from "@/components/AppBottomSheet";
 import DailyCalories from "@/components/DailyCalories";
 import { useTheme } from "react-native-paper";
 import { useQueryClient } from "@tanstack/react-query";
-import { EntryKeys } from "@/keys/QueryKeys";
+import { EntryKeys, SettingsKeys } from "@/keys/QueryKeys";
+import Screen from "@/components/Screen";
 
 export default function Index() {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -18,12 +19,15 @@ export default function Index() {
     bottomSheetRef.current?.snapToIndex(1);
   };
 
-  // Invalidate the entries query when the app is opened.
   useEffect(() => {
+    // Invalidate the entries query when the app is opened.
     const subscription = AppState.addEventListener("change", (nextAppState) => {
       if (nextAppState === "active") {
         queryClient.invalidateQueries({
           queryKey: EntryKeys.all,
+        });
+        queryClient.invalidateQueries({
+          queryKey: SettingsKeys.all,
         });
       }
     });
@@ -35,13 +39,13 @@ export default function Index() {
   }, []);
 
   return (
-    <GestureHandlerRootView
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
-    >
-      <DailyCalories />
-      <BottomNavigation onPress={handleBottomSheetOnOpen} />
-      <AppBottomSheet ref={bottomSheetRef} />
-    </GestureHandlerRootView>
+    <Screen>
+      <GestureHandlerRootView style={styles.container}>
+        <DailyCalories />
+        <BottomNavigation onPress={handleBottomSheetOnOpen} />
+        <AppBottomSheet ref={bottomSheetRef} />
+      </GestureHandlerRootView>
+    </Screen>
   );
 }
 

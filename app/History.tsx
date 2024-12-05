@@ -5,6 +5,7 @@ import HistoryTotal from "@/components/HistoryTotal";
 import HistoryDatePicker from "@/components/HistoryDatePicker";
 import { useState } from "react";
 import { useTheme } from "react-native-paper";
+import Screen from "@/components/Screen";
 
 const History = () => {
   const [date, setDate] = useState(new Date());
@@ -16,9 +17,7 @@ const History = () => {
   };
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
-    >
+    <Screen>
       <HistoryDatePicker date={date} onChange={handleOnDateChange} />
       <ScrollView style={styles.scrollView}>
         <HistoryTotal
@@ -29,15 +28,11 @@ const History = () => {
           <HistoryMealEntries key={index} item={history} />
         ))}
       </ScrollView>
-    </View>
+    </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
   scrollView: {
     width: "100%",
     backgroundColor: "",
